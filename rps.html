@@ -21,7 +21,12 @@
             }
             return(gepval);
         }
-        console.log(getCumputerChoice());
+        console.log(getPlayerChoice());
+        function getPlayerChoice(){
+            let jatval = window.prompt("The game is rock, paper, scrissors... What's your choice?");
+            return(jatval.toLocaleLowerCase());
+        }
+        console.log(getPlayerChoice());
     </script>
 </body>
 </html>
