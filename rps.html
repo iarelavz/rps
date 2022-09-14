@@ -8,25 +8,62 @@
 </head>
 <body>
     <script>
-        
        function getCumputerChoice() {
             let gepval;
             let vsz = Math.floor(Math.random()*2);
             if (vsz == 0) {
-                gepval = "Rock";
+                gepval = "rock";
             } else if (vsz ==1) {
-                gepval="Paper";
+                gepval="paper";
             } else {
-                gepval="Scrissors";
+                gepval="scissors";
             }
             return(gepval);
         }
-        console.log(getPlayerChoice());
         function getPlayerChoice(){
-            let jatval = window.prompt("The game is rock, paper, scrissors... What's your choice?");
+            let jatval = window.prompt("The game is rock, paper, scissors... What's your choice?");
             return(jatval.toLocaleLowerCase());
         }
-        console.log(getPlayerChoice());
+       function oneround(gepval,jatval) {   
+            if (gepval== "rock" && jatval=="paper"){
+                eredmeny=("You Win!");
+            } else if (gepval== "paper" && jatval=="scissors"){
+                eredmeny=("You Win!");
+            } else if (gepval== "scissors" && jatval=="rock"){
+                eredmeny=("You Win!");
+            } else if (gepval== "scissors" && jatval=="paper"){
+                eredmeny=("You lose!");
+            } else if (gepval== "rock" && jatval=="scissors"){
+                eredmeny=("You lose!");
+            } else if (gepval== "paper" && jatval=="rock"){
+                eredmeny=("You lose!");
+            } else {
+                eredmeny=("Tie!");
+            }
+            return(eredmeny);
+        }
+        function game(){
+            let win= 0;
+            let tie= 0;
+            let lost= 0;
+            for (let i = 0; i<5; i++) {
+                let gepval = getCumputerChoice();
+                let jatval = getPlayerChoice();
+                console.log("The computer chose: " + gepval);
+                console.log("Your choice is: " +jatval);
+                console.log(oneround(gepval,jatval));
+                if (oneround(gepval,jatval)=="You Win!") {
+                    win++;
+                } else if (oneround(gepval,jatval)=="You lose!") {
+                    lost++;
+                } else {
+                    tie++;
+                }
+            }
+            console.log("Your score is: " +win+" win "+ lost+" lose and "+tie+" tie.")
+        }
+
+        game();
     </script>
 </body>
 </html>
