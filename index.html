@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <button id="rockbtn">Rock</button> 
+        <button id="paperbtn">Paper</button> 
+        <button id="scbtn">Scissors</button> 
+    </div>
+   <script>
+       function getCumputerChoice() {
+            let gepval;
+            let vsz = Math.floor(Math.random()*2);
+            if (vsz == 0) {
+                gepval = "rock";
+            } else if (vsz ==1) {
+                gepval="paper";
+            } else {
+                gepval="scissors";
+            }
+            return(gepval);
+        }
+        function getPlayerChoice(){
+            let jatval = window.prompt("The game is rock, paper, scissors... What's your choice?");
+            return(jatval.toLocaleLowerCase());
+        }
+
+
+       
+        function oneround(gepval,jatval) {   
+            if (gepval== "rock" && jatval=="paper"){
+                eredmeny=("You Win!");
+            } else if (gepval== "paper" && jatval=="scissors"){
+                eredmeny=("You Win!");
+            } else if (gepval== "scissors" && jatval=="rock"){
+                eredmeny=("You Win!");
+            } else if (gepval== "scissors" && jatval=="paper"){
+                eredmeny=("You lose!");
+            } else if (gepval== "rock" && jatval=="scissors"){
+                eredmeny=("You lose!");
+            } else if (gepval== "paper" && jatval=="rock"){
+                eredmeny=("You lose!");
+            } else {
+                eredmeny=("Tie!");
+            }
+            return(eredmeny);
+        }
+        function game(){
+            let win= 0;
+            let tie= 0;
+            let lost= 0;
+            for (let i = 0; i<5; i++) {
+                let gepval = getCumputerChoice();
+                let jatval = getPlayerChoice();
+                console.log("The computer chose: " + gepval);
+                console.log("Your choice is: " +jatval);
+                console.log(oneround(gepval,jatval));
+                if (oneround(gepval,jatval)=="You Win!") {
+                    win++;
+                } else if (oneround(gepval,jatval)=="You lose!") {
+                    lost++;
+                } else {
+                    tie++;
+                }
+            }
+            console.log("Your score is: " +win+" win "+ lost+" lose and "+tie+" tie.")
+        }
+        const rockbtn = document.querySelector('#rockbtn');
+        const paperbtn = document.querySelector('#paperbtn');
+        const scbtn = document.querySelector('#scbtn');
+
+        const container = document.querySelector('.container');
+        const content = document.createElement('div');
+        content.classList.add('content');
+        
+        
+        rockbtn.addEventListener('click', () => {
+            clickgame("rock");
+        });
+       
+        paperbtn.addEventListener('click', () => {
+            clickgame("paper");
+        });
+
+        scbtn.addEventListener('click', () => {
+            clickgame("scissors");
+        });
+        
+        let win= 0;
+        let tie= 0;
+        let lost= 0;
+        
+        
+        function clickgame(clickput) {
+            
+            if (win != 5 && lost != 5){
+                let gepval = getCumputerChoice();
+                let jatval = clickput;
+                console.log("The computer chose: " + gepval);
+                console.log("Your choice is: " +jatval);
+                console.log(oneround(gepval,jatval));
+                if (oneround(gepval,jatval)=="You Win!") {
+                    win++;
+                    content.textContent = "Your score is: " +win+" win "+ lost+" lose and "+tie+" tie.";
+                    container.appendChild(content);
+                    console.log("Your score is: " +win+" win "+ lost+" lose and "+tie+" tie.")
+                } else if (oneround(gepval,jatval)=="You lose!") {
+                    lost++;
+                    content.textContent = "Your score is: " +win+" win "+ lost+" lose and "+tie+" tie.";
+                    container.appendChild(content);
+                    console.log("Your score is: " +win+" win "+ lost+" lose and "+tie+" tie.")
+                } else {
+                    tie++;
+                    content.textContent = "Your score is: " +win+" win "+ lost+" lose and "+tie+" tie.";
+                    container.appendChild(content);
+                    console.log("Your score is: " +win+" win "+ lost+" lose and "+tie+" tie.")
+                }
+            }  else {
+                if (win==5){
+                    content.textContent = "Congratz, You win!";
+                    container.appendChild(content);
+                    win =0;
+                    lost=0;
+                } else if (lost==5){
+                    content.textContent = "Sorry, you can't beat at AI!";
+                    container.appendChild(content);
+                    win =0;
+                    lost=0;
+                    tie=0;
+                }
+            }
+        };
+    </script>
+</body>
+</html>
