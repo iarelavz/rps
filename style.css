@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+#rockbtn #paperbtn #scbtn {
+    width: 150%;
+    height: 150%;
+    border-radius: 20px;
+}
